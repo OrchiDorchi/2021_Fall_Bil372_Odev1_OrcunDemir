@@ -1,22 +1,25 @@
-from os import name
-import re
+
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from Classes import User, Employee, Department, City, District, Problem, Area, Class, Operation, Activity, Output
 import bcrypt
+
+
 app = Flask(__name__)
-ENV = 'dev'
+ENV = 'prod'
 
 if ENV == 'dev':
     app.debug = True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:12345@localhost/372hw1'
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = ''
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://vhedpmbkcnxwxe:e809f3f97447a585ced09ffc9bcad5d08fd1222b4a93b73763e8277431c34ace@ec2-52-201-195-11.compute-1.amazonaws.com:5432/d9367780i1v1di'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
+
 salt = b'$2b$12$yikfuoh7WR/uE2iw/aWD2.'
 
 
