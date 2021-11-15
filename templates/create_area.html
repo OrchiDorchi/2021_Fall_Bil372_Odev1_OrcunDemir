@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/style.css">
-    <title>All Areas</title>
+    <title>Create Area</title>
 </head>
 
 <body>
@@ -29,30 +29,31 @@
             </ul>
         </div>
         <div class="main_content">
-            <div class='list-screen'>
-                <p>All Areas</p>
-                {% if message %}
-                <p class="error-message">{{ message | safe }}</p>
+            <div class="container">
+                {% if success_message %}
+                <p class="success-message">{{ success_message | safe }}</p>
                 {% endif %}
-                <tr>
-                    <td>area_name, </td>
-                    <td>area_type </td>
-                </tr>
-                <br>
-                <br>
-                {% for row in rows %}
-                <tr>
-                    <td> {{ row.area_name }}, </td>
-                    <td> {{ row.area_type }} </td>
-                    <td><a href='/area/{{row.id}}' class='text-button'>Edit</a></td>
-                    <td><a href='/delete_area/{{row.id}}' class='text-button'>Delete</a></td>
-                </tr>
-                <br>
-                <br>
-                {% endfor %}
-                <a href="/create_area" class='button'>Create Area</a>
+                {% if error_message %}
+                <p class="error-message">{{ error_message | safe }}</p>
+                {% endif %}
+                <p>Create Area</p>
+                <form action="/create_area" method="POST">
+                    <div class="form-group">
+                        <p>Area Name*</p>
+                        <input type="text" name='area_name' placeholder="Area Name" class='input' />
+                    </div>
+                    <div class="form-group">
+                        <p>Area Type(True | False)*</p>
+                        <input type="text" name='area_type' placeholder="Area Type(True | False)" class='input' />
+                    </div>
+
+                    <div class="centered">
+                        <input type="submit" value="Create Area" class='button'>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
 
 </body>
 

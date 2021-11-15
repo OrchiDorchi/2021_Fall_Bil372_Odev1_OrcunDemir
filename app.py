@@ -371,6 +371,44 @@ def delete_area(id=None):
     return redirect(url_for('all_areas'))
 
 
+@app.route('/create_area', methods=['POST', 'GET'])
+def create_area():
+    if request.method == 'GET':
+        return render_template('create_area.html')
+    elif request.method == 'POST':
+        area_name = request.form['area_name']
+        area_type = request.form['area_type']
+        if area_type == 'True':
+            area_type = True
+        elif area_type == 'False':
+            area_type = False
+        else:
+            return render_template('create_area.html', error_message='Please fill all required fields.')
+        data = Area(area_name, area_type)
+        db.session.add(data)
+        db.session.commit()
+        return render_template('create_area.html', success_message='Area created succesfully.')
+
+
+@app.route('/create_class', methods=['POST', 'GET'])
+def create_class():
+    if request.method == 'GET':
+        return render_template('create_class.html')
+    elif request.method == 'POST':
+        class_name = request.form['class_name']
+        class_type = request.form['class_type']
+        if class_type == 'True':
+            class_type = True
+        elif class_type == 'False':
+            class_type = False
+        else:
+            return render_template('create_class.html', error_message='Please fill all required fields.')
+        data = Class(class_name, class_type)
+        db.session.add(data)
+        db.session.commit()
+        return render_template('create_class.html', success_message='Class created succesfully.')
+
+
 @app.route('/all_classes', methods=['GET'])
 def all_classes():
     return render_template('all_classes.html', rows=db.session.query(Class).all())
