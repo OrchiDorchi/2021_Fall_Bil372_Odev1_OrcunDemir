@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="sidebar">
+            <h2>Operations</h2>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/all_operations">List Operations</a></li>
+                <li><a href="/all_outputs">List Outputs</a></li>
+                <li><a href="/all_activities">List Activities</a></li>
+                <li><a href="/all_areas">List Areas</a></li>
+                <li><a href="/all_classes">List Classes</a></li>
+                <li><a href="/all_problems">List Problems</a></li>
+                <li><a href="/all_users">List Users</a></li>
+                <li><a href="/all_employees">List Employees</a></li>
+                <li><a href="/all_departments">List Departments</a></li>
+                <li><a href="/all_cities">List Cities</a></li>
+                <li><a href="/all_districts">List Districts</a></li>
+            </ul>
+        </div>
+        <div class="main_content">
+            <div class='list-screen'>
+                <p>All Departments</p>
+                <tr>
+                    <td> department_code, </td>
+                    <td> department_name, </td>
+                    <td> top_department_code, </td>
+                    <td> city_code, </td>
+                    <td> district_code, </td>
+                    <td> post_code, </td>
+                    <td> manager_username, </td>
+                </tr>
+                <br>
+                <br>
+                {% for row in rows %}
+                <tr>
+                    <td>{{ row.department_code }},</td>
+                    <td>{{ row.department_name }},</td>
+                    <td>{{ row.top_department_code }},</td>
+                    <td>{{ row.city_code }},</td>
+                    <td>{{ row.district_code }},</td>
+                    <td>{{ row.post_code }},</td>
+                    <td>{{ row.manager_username }}</td>
+                    <td><a href='/department/{{row.department_code}}' class='text-button'>Edit</a></td>
+                    <td><a href='/delete_department/{{row.department_code}}' class='text-button'>Delete</a></td>
+                </tr>
+                <br>
+                <br>
+                {% endfor %}
+                <a href="/create_department" class='button'>Create Department</a>
+            </div>
+        </div>
+
+</body>
+
+</html>

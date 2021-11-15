@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>All Operations</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="sidebar">
+            <h2>Operations</h2>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/all_operations">List Operations</a></li>
+                <li><a href="/all_outputs">List Outputs</a></li>
+                <li><a href="/all_activities">List Activities</a></li>
+                <li><a href="/all_areas">List Areas</a></li>
+                <li><a href="/all_classes">List Classes</a></li>
+                <li><a href="/all_problems">List Problems</a></li>
+                <li><a href="/all_users">List Users</a></li>
+                <li><a href="/all_employees">List Employees</a></li>
+                <li><a href="/all_departments">List Departments</a></li>
+                <li><a href="/all_cities">List Cities</a></li>
+                <li><a href="/all_districts">List Districts</a></li>
+            </ul>
+        </div>
+        <div class="main_content">
+            <div class='list-screen'>
+                <p>All Operations</p>
+                {% if message %}
+                <p class="error-message">{{ message | safe }}</p>
+                {% endif %}
+                <tr>
+                    <td>operation_name, </td>
+                    <td>area_id, </td>
+                    <td>class_id </td>
+                </tr>
+                <br>
+                <br>
+                {% for row in rows %}
+                <tr>
+                    <td> {{ row.operation_name }}, </td>
+                    <td> {{ row.area_id }} </td>
+                    <td> {{ row.class_id }} </td>
+                    <td><a href='/delete_operation/{{row.id}}' class='text-button'>Delete</a></td>
+                </tr>
+                <br>
+                <br>
+                {% endfor %}
+                <a href="/create_operation" class='button'>Create Operation</a>
+            </div>
+        </div>
+
+</body>
+
+</html>
